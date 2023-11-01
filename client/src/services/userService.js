@@ -1,7 +1,8 @@
 const baseUrl = "http://localhost:3005/api/users/";
 
-export const getAll = async (page, count) => {
+export const getAll = async (page, count, sort, order) => {
     const response = await fetch(`${baseUrl}?page=${page}&limit=${count}}`);
+
     const result = await response.json();
     console.log(result);
 

@@ -55,7 +55,7 @@ function App() {
             setCurrentPage((oldState) => oldState + 1);
         }
     };
-    //TODO: Fetch users with sort criteria!
+
     const fetchUsers = async (currentPage, pageCount) => {
         const usersObj = await userService.getAll(currentPage, pageCount);
         const count = usersObj["count"];
