@@ -17,19 +17,19 @@ export const getOne = async (id) => {
 };
 
 export const create = async (userData) => {
-    const { street, country, city, streetNumber, ...data } = userData;
-    data.address = {
-        street,
-        country,
-        city,
-        streetNumber,
-    };
+    // const { street, country, city, streetNumber, ...data } = userData;
+    // data.address = {
+    //     street,
+    //     country,
+    //     city,
+    //     streetNumber,
+    // };
     const response = await fetch(`${baseUrl}`, {
         method: "POST",
         headers: {
             "content-type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(userData),
     });
     const result = await response.json();
     return result;
@@ -44,19 +44,12 @@ export const remove = async (id) => {
 };
 
 export const update = async (userData, id) => {
-    let { street, country, city, streetNumber, ...data } = userData;
-    data.address = {
-        country,
-        city,
-        street,
-        streetNumber,
-    };
     const response = await fetch(`${baseUrl}/${id}`, {
         method: "PUT",
         headers: {
             "content-type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(userData),
     });
     const result = await response.json();
     return result.user;

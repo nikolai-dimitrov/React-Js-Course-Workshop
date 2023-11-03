@@ -52,8 +52,8 @@ export const UserList = ({
         setShowUserAddForm(true);
     };
 
-    const submitUserCreate = (e) => {
-        submitCreateUserHandler(e);
+    const submitUserCreate = (event, formValues) => {
+        submitCreateUserHandler(event, formValues);
         setShowUserAddForm(false);
     };
 
@@ -63,8 +63,8 @@ export const UserList = ({
         setShowUserEditForm((oldState) => currentUser.user);
     };
 
-    const submitUserEdit = (e, id) => {
-        userEditHandler(e, id);
+    const submitUserEdit = (event, formValues, id) => {
+        userEditHandler(event, formValues, id);
         setShowUserEditForm(null);
     };
 
@@ -97,7 +97,7 @@ export const UserList = ({
                     closeModalHandler={closeModalHandler}
                 />
             )}
-
+            {/* CREATE */}
             {showUserAddForm && (
                 <UserModify
                     closeModalHandler={closeModalHandler}

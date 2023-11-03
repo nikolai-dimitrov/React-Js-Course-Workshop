@@ -73,13 +73,10 @@ function App() {
     };
     //Pagination end.
 
-    const submitCreateUserHandler = async (e) => {
+    const submitCreateUserHandler = async (e, formValues) => {
         e.preventDefault();
-        //Take form data
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData);
         //Send ajax request to server.
-        const newUser = await userService.create(data);
+        const newUser = await userService.create(formValues);
         //If success add new user to current state.
         if (newUser.user) {
             setUsers((oldState) => [...oldState, newUser.user]);
@@ -91,13 +88,10 @@ function App() {
         setUsers((oldState) => oldState.filter((u) => u._id !== id));
     };
 
-    const userEditHandler = async (event, id) => {
+    const userEditHandler = async (event, formValues, id) => {
         event.preventDefault();
-        //Take form data
-        const formData = new FormData(event.target);
-        const data = Object.fromEntries(formData);
         //Send ajax request to the server
-        const updatedUser = await userService.update(data, id);
+        const updatedUser = await userService.update(formValues, id);
         //If success add new user to current state.
         setUsers((oldState) => [
             ...oldState.filter((u) => u._id !== id),
