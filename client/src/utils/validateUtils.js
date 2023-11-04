@@ -2,6 +2,7 @@ export const validateUserForm = (event) => {
     const name = event.target.name;
     const value = event.target.value.trim();
     let err = {};
+
     if (name === "firstName" && (value.length < 3 || value.length > 20)) {
         err.firstName = "First name should be between 3 and 20 characters.";
     }
@@ -26,22 +27,23 @@ export const validateUserForm = (event) => {
         err.imageUrl = "URL field should start with http:// or https://";
     }
 
-    if (name === "country" && (value.length < 10 || value.length > 10)) {
+    if (name === "country" && (value.length < 3 || value.length > 10)) {
         err.country = "Country should be at least 3 characters";
     }
 
-    if (name === "city" && (value.length < 10 || value.length > 10)) {
+    if (name === "city" && (value.length < 3 || value.length > 10)) {
         err.city = "City should be at least 3 characters";
     }
 
-    if (name === "street" && (value.length < 10 || value.length > 10)) {
+    if (name === "street" && (value.length < 3 || value.length > 10)) {
         err.street = "Street should be at least 3 characters";
     }
 
     if (name === "streetNumber" && Number(value) < 0) {
         err.streetNumber = "Street Number should be at positive number.";
     }
-
-    console.log(err, "Validate utils line");
+    if (Object.entries(err).length == 0) {
+        return { [event.target.name]: "" };
+    }
     return err;
 };

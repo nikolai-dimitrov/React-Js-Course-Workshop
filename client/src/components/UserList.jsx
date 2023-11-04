@@ -17,6 +17,7 @@ export const UserList = ({
     queryState,
 }) => {
     // States
+
     //User info state
     let [selectedUser, setSelectedUser] = useState(null);
 
@@ -89,6 +90,7 @@ export const UserList = ({
             sortUsers(event.target.textContent);
         }
     };
+
     return (
         <>
             {selectedUser && (

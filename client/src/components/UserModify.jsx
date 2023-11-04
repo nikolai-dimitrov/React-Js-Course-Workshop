@@ -14,8 +14,18 @@ export const UserModify = ({ closeModalHandler, submitForm, currentUser }) => {
             streetNumber: currentUser ? currentUser.address.streetNumber : "",
         },
     });
-    const [errors, setErrors] = useState({});
-    console.log(errors, "Under errors useState line!");
+    const [errors, setErrors] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phoneNumber: "",
+        imageUrl: "",
+        country: "",
+        city: "",
+        street: "",
+        streetNumber: "",
+    });
+
     const formChangeHandler = (event) => {
         let name = event.target.name;
         let value = event.target.value;
@@ -39,9 +49,8 @@ export const UserModify = ({ closeModalHandler, submitForm, currentUser }) => {
     };
     const inputValidateHandler = (event) => {
         const err = validateUtils.validateUserForm(event);
-        setErrors(err);
+        setErrors((oldState) => ({ ...oldState, ...err }));
     };
-    console.log("RE-RENDER", errors);
 
     return (
         <div className="overlay">
